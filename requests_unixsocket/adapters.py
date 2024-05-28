@@ -34,8 +34,7 @@ class UnixHTTPConnection(urllib3.connection.HTTPConnection, object):
 
 class UnixHTTPConnectionPool(urllib3.connectionpool.HTTPConnectionPool):
     def __init__(self, socket_path, timeout=60):
-        super(UnixHTTPConnectionPool, self).__init__(
-            'localhost', timeout=timeout)
+        super(UnixHTTPConnectionPool, self).__init__('localhost', timeout=timeout)
         self.socket_path = socket_path
         self.timeout = timeout
 
@@ -60,8 +59,7 @@ class UnixAdapter(HTTPAdapter):
         proxy = proxies.get(urlparse(url.lower()).scheme)
 
         if proxy:
-            raise ValueError('%s does not support specifying proxies'
-                             % self.__class__.__name__)
+            raise ValueError('%s does not support specifying proxies' % self.__class__.__name__)
 
         with self.pools.lock:
             pool = self.pools.get(url)

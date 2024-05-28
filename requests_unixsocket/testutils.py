@@ -49,7 +49,8 @@ class WSGIApp:
             ('X-Transport', 'unix domain socket'),
             ('X-Socket-Path', environ['SERVER_PORT']),
             ('X-Requested-Query-String', environ['QUERY_STRING']),
-            ('X-Requested-Path', environ['PATH_INFO'])]
+            ('X-Requested-Path', environ['PATH_INFO']),
+        ]
         body_bytes = b'Hello world!'
         start_response(status_text, response_headers)
         logger.debug(
@@ -57,7 +58,8 @@ class WSGIApp:
             'status_text = %r; '
             'response_headers = %r; '
             'body_bytes = %r',
-            status_text, response_headers, body_bytes)
+            status_text, response_headers, body_bytes,
+        )
         return [body_bytes]
 
 

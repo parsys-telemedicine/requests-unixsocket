@@ -19,11 +19,9 @@ class monkeypatch(object):
         requests = self._get_global_requests_module()
 
         # Methods to replace
-        self.methods = ('request', 'get', 'head', 'post',
-                        'patch', 'put', 'delete', 'options')
+        self.methods = ('request', 'get', 'head', 'post', 'patch', 'put', 'delete', 'options')
         # Store the original methods
-        self.orig_methods = dict(
-            (m, requests.__dict__[m]) for m in self.methods)
+        self.orig_methods = dict((m, requests.__dict__[m]) for m in self.methods)
         # Monkey patch
         g = globals()
         for m in self.methods:
