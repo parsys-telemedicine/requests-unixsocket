@@ -1,18 +1,13 @@
 import socket
 
+import urllib3
 from requests.adapters import HTTPAdapter
 from requests.compat import urlparse, unquote
-
-try:
-    from requests.packages import urllib3
-except ImportError:
-    import urllib3
 
 
 # The following was adapted from some code from docker-py
 # https://github.com/docker/docker-py/blob/master/docker/transport/unixconn.py
 class UnixHTTPConnection(urllib3.connection.HTTPConnection, object):
-
     def __init__(self, unix_socket_url, timeout=60):
         """Create an HTTP connection to a unix domain socket
 
@@ -38,7 +33,6 @@ class UnixHTTPConnection(urllib3.connection.HTTPConnection, object):
 
 
 class UnixHTTPConnectionPool(urllib3.connectionpool.HTTPConnectionPool):
-
     def __init__(self, socket_path, timeout=60):
         super(UnixHTTPConnectionPool, self).__init__(
             'localhost', timeout=timeout)
@@ -50,7 +44,6 @@ class UnixHTTPConnectionPool(urllib3.connectionpool.HTTPConnectionPool):
 
 
 class UnixAdapter(HTTPAdapter):
-
     def __init__(self, timeout=60, pool_connections=25, *args, **kwargs):
         super(UnixAdapter, self).__init__(*args, **kwargs)
         self.timeout = timeout
