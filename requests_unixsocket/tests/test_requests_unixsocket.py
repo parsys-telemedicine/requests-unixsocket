@@ -11,7 +11,6 @@ import requests
 import requests_unixsocket
 from requests_unixsocket.testutils import UnixSocketServerThread
 
-
 logger = logging.getLogger(__name__)
 
 

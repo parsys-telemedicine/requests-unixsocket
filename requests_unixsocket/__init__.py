@@ -1,7 +1,8 @@
-import requests
 import sys
 
-from .adapters import UnixAdapter
+import requests
+
+from requests_unixsocket.adapters import UnixAdapter
 
 DEFAULT_SCHEME = 'http+unix://'
 

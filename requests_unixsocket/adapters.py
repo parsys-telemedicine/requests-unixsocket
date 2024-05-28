@@ -2,7 +2,7 @@ import socket
 
 import urllib3
 from requests.adapters import HTTPAdapter
-from requests.compat import urlparse, unquote
+from requests.compat import unquote, urlparse
 
 
 # The following was adapted from some code from docker-py
